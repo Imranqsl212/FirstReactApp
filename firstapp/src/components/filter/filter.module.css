@@ -1,0 +1,16 @@
+.filter{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80px;
+  column-gap: 15.5px;
+}
+.filter__h5{
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.active{
+  color: rgb(119, 191, 11);
+}
