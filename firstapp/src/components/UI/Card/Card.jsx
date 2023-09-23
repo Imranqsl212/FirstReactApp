@@ -11,7 +11,8 @@ const Card = (props) => {
         time,
         price,
       };
-      const response = await axios.post("http://localhost:4000/basket", data);
+      const response = await axios.post("https://650efda754d18aabfe99b5f0.mockapi.io/api/basket", data);
+      console.log(1)
       console.log("POST request successful", response.data);
     } catch (error) {
       console.error("Error making POST request", error);

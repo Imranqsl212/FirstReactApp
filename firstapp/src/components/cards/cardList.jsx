@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../UI/Card/Card";
+import LoadingSpinner from '../loader/Loader'
 
 
 const CardList = ({ data, loading }) => {
@@ -7,7 +8,7 @@ const CardList = ({ data, loading }) => {
   return (
     <>
       {loading ? (
-        <p>load</p>
+        <LoadingSpinner/>
       ) : (
         data.map((cardData) => {
           return (

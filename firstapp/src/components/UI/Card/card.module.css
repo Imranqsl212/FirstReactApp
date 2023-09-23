@@ -1,7 +1,7 @@
 .cardContainer {
   overflow-y: hidden;
-  width: 360px;
-  height: 476px;
+  width: 390px;
+  height: 540px;
   margin-bottom: 15px;
 }
 .cardContainer:hover {
@@ -49,17 +49,12 @@
   overflow: hidden;
 }
 .bottom{
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-right: 20px;
 }
-
-.close{
-  display: none;
-}
-@media screen and (max-width: 1180px) {
-  .cardContainer {
-    width: 397px;
-    height: 256px;
-  }
+.bottom__text{
+  width: 75%;
 }
