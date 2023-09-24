@@ -4,7 +4,7 @@ import BasketCards from "../../components/UI/basketCards/BasketCards";
 function Basket() {
   return (
     <>
-      <h1 style={{ marginBottom: "55px" }}>Basket</h1>
+      <h1 style={{ marginBottom: "55px", textAlign: "center",marginTop:'100px' }}>Basket</h1>
       <BasketCards />
     </>
   );

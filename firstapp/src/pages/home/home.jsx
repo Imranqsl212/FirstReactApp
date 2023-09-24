@@ -5,6 +5,7 @@ import SearchInput from "../../components/UI/customSearchInput/SearchInput";
 import "./home.css";
 import Filter from "../../components/filter/Filter";
 import Price from "../../components/priceFilter/Price";
+import Hero from '../../components/hero/Hero'
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -49,18 +50,24 @@ const Home = () => {
 
   return (
     <>
+      <Hero />
       <div className="cards">
+        <h2 className="cards__h3">Наше меню</h2>
         <SearchInput
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />
         <hr className="input__underline" />
-        <Filter
-          value={activeCategoryIndex}
-          setValue={(i) => setActiveCategoryIndex(i)}
-        />
-        <Price sortingOrder={sortingOrder} setSortingOrder={setSortingOrder} />
-        <h3 className="cards__h3">Рестораны в Москве</h3>
+        <div className="wrap">
+          <Filter
+            value={activeCategoryIndex}
+            setValue={(i) => setActiveCategoryIndex(i)}
+          />
+          <Price
+            sortingOrder={sortingOrder}
+            setSortingOrder={setSortingOrder}
+          />
+        </div>
         <div className="cardWrapper">
           <CardList data={filteredData} loading={loading} />
         </div>

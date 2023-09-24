@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap");
+.hero {
+  font-family: "Ubuntu", sans-serif;
+  width: 100%;
+  height: calc(100vh - 75px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: hidden;
+}
+.left {
+  width: 40%;
+}
+.right{
+  overflow-y: hidden;
+}
+.left-heading {
+  font-weight: 700;
+  color: #273342;
+  font-size: 3.75rem;
+  line-height: 1;
+  overflow-y: hidden;
+}
+.left-paragraph {
+  color: gray;
+  margin-top: 20px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.btn {
+  width: 200px;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 19px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 0.375rem;
+  border: none;
+}
+.success {
+  background-color: rgb(79 70 229);
+  color: white;
+  box-shadow: 2px 4px 6px 8px rgb(79 70 229/0.1);
+  margin-right: 20px;
+}
+
+.info {
+  background-color: #fff;
+  color: rgb(79 70 229);
+  box-shadow: 2px 4px 6px 8px #dddddd40;
+}
+.right__img{
+  transition: 0.4s;
+  height: 600px;
+}
+.right__img:hover{
+  transform: scale(1.01);
+}
