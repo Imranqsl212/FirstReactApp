@@ -4,47 +4,44 @@ import CardList from "../../components/cards/cardList";
 import SearchInput from "../../components/UI/customSearchInput/SearchInput";
 import "./home.css";
 import Filter from "../../components/filter/Filter";
+import Price from "../../components/priceFilter/Price";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
-
-  const handleCategoryChange = async (index) => {
-    const categoryParam = index === 0 ? "" : `?category=${index}`;
-
+  const [sortingOrder, setSortingOrder] = useState("");
+  const fetchData = async (index, sort) => {
     try {
-      const response = await axios.get(
-        `https://650efda754d18aabfe99b5f0.mockapi.io/api/cards${categoryParam}`
-      );
+      let apiUrl = "https://650efda754d18aabfe99b5f0.mockapi.io/api/cards";
+
+      const categoryParam =
+        index === 0 ? "" : `?category=${activeCategoryIndex}`;
+      apiUrl += categoryParam;
+
+      if (sort !== "" && categoryParam === "") {
+        apiUrl += `?sortBy=price&order=${sort}`;
+      } else if (sort !== "" && categoryParam !== "") {
+        apiUrl += `&sortBy=price&order=${sort}`;
+      }
+
+      const response = await axios.get(apiUrl);
       setData(response.data);
-    } catch (e) {
-      alert("Error: " + e);
+      console.log(1);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://650efda754d18aabfe99b5f0.mockapi.io/api/cards"
-        );
-        setData(response.data);
-        setLoading(false);
-
-        console.log(1);
-      } catch (e) {
-        alert("Error: " + e);
-        setLoading(true);
-      }
-    };
-    fetchData();
-  }, []);
+    fetchData(activeCategoryIndex, sortingOrder);
+  }, [activeCategoryIndex, sortingOrder]);
 
   useEffect(() => {
-    handleCategoryChange(activeCategoryIndex);
-  }, [activeCategoryIndex]);
+    fetchData(activeCategoryIndex, sortingOrder);
+  }, []);
 
   const filteredData = data.filter((cardData) =>
     cardData.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -62,6 +59,7 @@ const Home = () => {
           value={activeCategoryIndex}
           setValue={(i) => setActiveCategoryIndex(i)}
         />
+        <Price sortingOrder={sortingOrder} setSortingOrder={setSortingOrder} />
         <h3 className="cards__h3">Рестораны в Москве</h3>
         <div className="cardWrapper">
           <CardList data={filteredData} loading={loading} />
