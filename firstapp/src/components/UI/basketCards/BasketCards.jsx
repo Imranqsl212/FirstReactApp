@@ -1,7 +1,7 @@
 import classes from "./basketCards.module.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import LoadingSpinner from '../../loader/Loader'
+import LoadingSpinner from "../../loader/Loader";
 
 const BasketCards = () => {
   const [basketData, setBasketData] = useState([]);
@@ -13,8 +13,11 @@ const BasketCards = () => {
         const response = await axios.get(
           "https://650efda754d18aabfe99b5f0.mockapi.io/api/basket"
         );
-        setBasketData(response.data);
-        setLoading(false)
+        const basketItems = response.data;
+        const totalPrice = basketItems.reduce((total, item) => total + item.price, 0);
+        setBasketData(basketItems);
+        setLoading(false);
+        setTotalPrice(totalPrice);
       } catch (e) {
         alert("Error: " + e);
         setLoading(true);
@@ -22,6 +25,7 @@ const BasketCards = () => {
     };
     getBasket();
   }, []);
+  
   return (
     <>
       {loading ? (
@@ -48,6 +52,7 @@ const BasketCards = () => {
           );
         })
       )}
+      <h4 className={classes.h43}>Total: {totalPrice}</h4>
     </>
   );
 };
